@@ -1,9 +1,9 @@
-// Copyright (c) 2017-2019 The NPCcoin developers
+// Copyright (c) 2017-2019 The PIVX developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef NPCcoin_ZEROCOIN_H
-#define NPCcoin_ZEROCOIN_H
+#ifndef PIVX_ZEROCOIN_H
+#define PIVX_ZEROCOIN_H
 
 #include <amount.h>
 #include <limits.h>
@@ -263,4 +263,4 @@ int GetWrapppedSerialInflation(libzerocoin::CoinDenomination denom);
 
 int64_t GetWrapppedSerialInflationAmount();
 
-#endif //NPCcoin_ZEROCOIN_H
+#endif //PIVX_ZEROCOIN_H

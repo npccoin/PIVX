@@ -1,14 +1,14 @@
-// Copyright (c) 2017-2019 The NPCcoin developers
+// Copyright (c) 2017-2019 The PIVX developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef NPCcoin_ACCUMULATORS_H
-#define NPCcoin_ACCUMULATORS_H
+#ifndef PIVX_ACCUMULATORS_H
+#define PIVX_ACCUMULATORS_H
 
 #include "libzerocoin/Accumulator.h"
 #include "libzerocoin/Coin.h"
 #include "libzerocoin/Denominations.h"
-#include "znpc/zerocoin.h"
+#include "zpiv/zerocoin.h"
 #include "accumulatormap.h"
 #include "chain.h"
 #include "uint256.h"
@@ -90,5 +90,5 @@ public:
     searchMintHeightException(const string &message) : message(message) {}
 };
 
-#endif //NPCcoin_ACCUMULATORS_H
+#endif //PIVX_ACCUMULATORS_H
 

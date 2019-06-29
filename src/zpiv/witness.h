@@ -1,9 +1,9 @@
-// Copyright (c) 2018 The NPCcoin developers
+// Copyright (c) 2018 The PIVX developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef NPCcoin_WITNESS_H
-#define NPCcoin_WITNESS_H
+#ifndef PIVX_WITNESS_H
+#define PIVX_WITNESS_H
 
 
 #include <libzerocoin/Accumulator.h>
@@ -79,4 +79,4 @@ public:
         READWRITE(accumulatorDenom);
     };
 };
-#endif //NPCcoin_WITNESS_H
+#endif //PIVX_WITNESS_H

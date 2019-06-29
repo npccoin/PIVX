@@ -1,9 +1,9 @@
-// Copyright (c) 2018-2019 The NPCcoin developers
+// Copyright (c) 2018-2019 The PIVX developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#include "znpcchain.h"
-#include "znpc/znpcmodule.h"
+#include "zpivchain.h"
+#include "zpiv/zpivmodule.h"
 #include "invalid.h"
 #include "main.h"
 #include "txdb.h"
@@ -293,7 +293,7 @@ std::string ReindexZerocoinDB()
                                 libzerocoin::ZerocoinParams* params = Params().Zerocoin_Params(false);
                                 PublicCoinSpend publicSpend(params);
                                 CValidationState state;
-                                if (!ZNPCModule::ParseZerocoinPublicSpend(in, tx, state, publicSpend)){
+                                if (!ZPIVModule::ParseZerocoinPublicSpend(in, tx, state, publicSpend)){
                                     return _("Failed to parse public spend");
                                 }
                                 vSpendInfo.push_back(make_pair(publicSpend, txid));

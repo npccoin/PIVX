@@ -1,9 +1,9 @@
-// Copyright (c) 2018-2019 The NPCcoin developers
+// Copyright (c) 2018-2019 The PIVX developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef NPCcoin_ZNPCTRACKER_H
-#define NPCcoin_ZNPCTRACKER_H
+#ifndef PIVX_ZPIVTRACKER_H
+#define PIVX_ZPIVTRACKER_H
 
 #include "zerocoin.h"
 #include "witness.h"
@@ -11,9 +11,9 @@
 #include <list>
 
 class CDeterministicMint;
-class CzNPCWallet;
+class CzPIVWallet;
 
-class CzNPCTracker
+class CzPIVTracker
 {
 private:
     bool fInitialized;
@@ -23,9 +23,9 @@ private:
     std::map<uint256, std::unique_ptr<CoinWitnessData> > mapStakeCache; //serialhash, witness value, height
     bool UpdateStatusInternal(const std::set<uint256>& setMempool, CMintMeta& mint);
 public:
-    CzNPCTracker(std::string strWalletFile);
-    ~CzNPCTracker();
-    void Add(const CDeterministicMint& dMint, bool isNew = false, bool isArchived = false, CzNPCWallet* zNPCWallet = NULL);
+    CzPIVTracker(std::string strWalletFile);
+    ~CzPIVTracker();
+    void Add(const CDeterministicMint& dMint, bool isNew = false, bool isArchived = false, CzPIVWallet* zPIVWallet = NULL);
     void Add(const CZerocoinMint& mint, bool isNew = false, bool isArchived = false);
     bool Archive(CMintMeta& meta);
     bool HasPubcoin(const CBigNum& bnValue) const;
@@ -55,4 +55,4 @@ public:
     void Clear();
 };
 
-#endif //NPCcoin_ZNPCTRACKER_H
+#endif //PIVX_ZPIVTRACKER_H
