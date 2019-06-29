@@ -1,5 +1,6 @@
 // Copyright (c) 2014-2016 The Dash developers
-// Copyright (c) 2016-2018 The PIVX developers
+// Copyright (c) 2014-2015 The PIVX developers
+// Copyright (c) 2016-2018 The NPCcoin developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -25,7 +26,7 @@ CSporkManager sporkManager;
 std::map<uint256, CSporkMessage> mapSporks;
 std::map<int, CSporkMessage> mapSporksActive;
 
-// PIVX: on startup load spork values from previous session if they exist in the sporkDB
+// NPCcoin: on startup load spork values from previous session if they exist in the sporkDB
 void LoadSporksFromDB()
 {
     for (int i = SPORK_START; i <= SPORK_END; ++i) {
@@ -102,7 +103,7 @@ void ProcessSpork(CNode* pfrom, std::string& strCommand, CDataStream& vRecv)
         mapSporksActive[spork.nSporkID] = spork;
         sporkManager.Relay(spork);
 
-        // PIVX: add to spork database.
+        // NPCcoin: add to spork database.
         pSporkDB->WriteSpork(spork.nSporkID, spork);
     }
     if (strCommand == "getsporks") {
@@ -135,6 +136,8 @@ int64_t GetSporkValue(int nSporkID)
         if (nSporkID == SPORK_14_NEW_PROTOCOL_ENFORCEMENT) r = SPORK_14_NEW_PROTOCOL_ENFORCEMENT_DEFAULT;
         if (nSporkID == SPORK_15_NEW_PROTOCOL_ENFORCEMENT_2) r = SPORK_15_NEW_PROTOCOL_ENFORCEMENT_2_DEFAULT;
         if (nSporkID == SPORK_16_ZEROCOIN_MAINTENANCE_MODE) r = SPORK_16_ZEROCOIN_MAINTENANCE_MODE_DEFAULT;
+        if (nSporkID == SPORK_17_ZEROCOIN_HEIGHT_START) r = SPORK_17_ZEROCOIN_HEIGHT_START_DEFAULT;
+        if (nSporkID == SPORK_18_ZEROCOIN_TIME_START) r = SPORK_18_ZEROCOIN_TIME_START_DEFAULT;
 
         if (r == -1) LogPrintf("%s : Unknown Spork %d\n", __func__, nSporkID);
     }
@@ -193,12 +196,6 @@ bool CSporkManager::CheckSignature(CSporkMessage& spork, bool fCheckSigner)
 
     if (fCheckSigner && !fValidWithNewKey)
         return false;
-
-    // See if window is open that allows for old spork key to sign messages
-    if (!fValidWithNewKey && GetAdjustedTime() < Params().RejectOldSporkKey()) {
-        CPubKey pubkeyold(ParseHex(Params().SporkKeyOld()));
-        return obfuScationSigner.VerifyMessage(pubkeyold, spork.vchSig, strMessage, errorMessage);
-    }
 
     return fValidWithNewKey;
 }
@@ -282,6 +279,8 @@ int CSporkManager::GetSporkIDByName(std::string strName)
     if (strName == "SPORK_14_NEW_PROTOCOL_ENFORCEMENT") return SPORK_14_NEW_PROTOCOL_ENFORCEMENT;
     if (strName == "SPORK_15_NEW_PROTOCOL_ENFORCEMENT_2") return SPORK_15_NEW_PROTOCOL_ENFORCEMENT_2;
     if (strName == "SPORK_16_ZEROCOIN_MAINTENANCE_MODE") return SPORK_16_ZEROCOIN_MAINTENANCE_MODE;
+    if (strName == "SPORK_17_ZEROCOIN_HEIGHT_START") return SPORK_17_ZEROCOIN_HEIGHT_START;
+    if (strName == "SPORK_18_ZEROCOIN_TIME_START") return SPORK_18_ZEROCOIN_TIME_START;
 
     return -1;
 }
@@ -299,6 +298,8 @@ std::string CSporkManager::GetSporkNameByID(int id)
     if (id == SPORK_14_NEW_PROTOCOL_ENFORCEMENT) return "SPORK_14_NEW_PROTOCOL_ENFORCEMENT";
     if (id == SPORK_15_NEW_PROTOCOL_ENFORCEMENT_2) return "SPORK_15_NEW_PROTOCOL_ENFORCEMENT_2";
     if (id == SPORK_16_ZEROCOIN_MAINTENANCE_MODE) return "SPORK_16_ZEROCOIN_MAINTENANCE_MODE";
+    if (id == SPORK_17_ZEROCOIN_HEIGHT_START) return "SPORK_17_ZEROCOIN_HEIGHT_START";
+    if (id == SPORK_18_ZEROCOIN_TIME_START) return "SPORK_18_ZEROCOIN_TIME_START";
 
     return "Unknown";
 }
