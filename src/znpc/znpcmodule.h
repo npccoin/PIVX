@@ -1,9 +1,9 @@
-// Copyright (c) 2019 The PIVX developers
+// Copyright (c) 2019 The NPCcoin developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 //
-#ifndef PIVX_ZPIVMODULE_H
-#define PIVX_ZPIVMODULE_H
+#ifndef NPCcoin_ZNPCMODULE_H
+#define NPCcoin_ZNPCMODULE_H
 
 #include "libzerocoin/bignum.h"
 #include "libzerocoin/Denominations.h"
@@ -16,7 +16,7 @@
 #include "uint256.h"
 #include <streams.h>
 #include <utilstrencodings.h>
-#include "zpiv/zerocoin.h"
+#include "znpc/zerocoin.h"
 #include "chainparams.h"
 
 static int const COIN_SPEND_PUBLIC_SPEND_VERSION = 3;
@@ -72,7 +72,7 @@ public:
 
 class CValidationState;
 
-namespace ZPIVModule {
+namespace ZNPCModule {
     bool createInput(CTxIn &in, CZerocoinMint& mint, uint256 hashTxOut);
     bool parseCoinSpend(const CTxIn &in, const CTransaction& tx, const CTxOut &prevOut, PublicCoinSpend& publicCoinSpend);
     bool validateInput(const CTxIn &in, const CTxOut &prevOut, const CTransaction& tx, PublicCoinSpend& ret);
@@ -89,4 +89,4 @@ namespace ZPIVModule {
 };
 
 
-#endif //PIVX_ZPIVMODULE_H
+#endif //NPCcoin_ZNPCMODULE_H
