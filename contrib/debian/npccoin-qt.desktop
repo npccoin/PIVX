@@ -1,0 +1,13 @@
+[Desktop Entry]
+Version=1.0
+Name=NPCcoin Core
+Comment=NPCcoin P2P Cryptocurrency
+Comment[fr]=NPCcoin, monnaie virtuelle cryptographique pair à pair
+Comment[tr]=NPCcoin, eşten eşe kriptografik sanal para birimi
+Exec=npccoin-qt %u
+Terminal=false
+Type=Application
+Icon=npccoin128
+MimeType=x-scheme-handler/npccoin;
+Categories=Office;Finance;
+StartupWMClass=NpcCoin-qt
