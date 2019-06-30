@@ -1,7 +1,8 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2014 The Bitcoin developers
 // Copyright (c) 2014-2015 The Dash developers
-// Copyright (c) 2015-2018 The PIVX developers
+// Copyright (c) 2014-2015 The PIVX developers
+// Copyright (c) 2015-2018 The NPCcoin developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -22,7 +23,7 @@ unsigned int GetNextWorkRequired(const CBlockIndex* pindexLast, const CBlockHead
     if (Params().NetworkID() == CBaseChainParams::REGTEST)
         return pindexLast->nBits;
 
-    /* current difficulty formula, pivx - DarkGravity v3, written by Evan Duffield - evan@dashpay.io */
+    /* current difficulty formula, npccoin - DarkGravity v3, written by Evan Duffield - evan@dashpay.io */
     const CBlockIndex* BlockLastSolved = pindexLast;
     const CBlockIndex* BlockReading = pindexLast;
     int64_t nActualTimespan = 0;
@@ -52,7 +53,12 @@ unsigned int GetNextWorkRequired(const CBlockIndex* pindexLast, const CBlockHead
         // ppcoin: target change every block
         // ppcoin: retarget with exponential moving toward target spacing
         uint256 bnNew;
-        bnNew.SetCompact(pindexLast->nBits);
+        if(pindexLast->nHeight >= Params().LAST_POW_BLOCK() && pindexLast->nHeight <= Params().LAST_POW_BLOCK() + 2) {
+			LogPrintf("DarkGravityWave: drop difficulty in PoS start\n");
+			uint256 bnTargetZero = (~uint256(0) >> 4);
+			bnNew = bnTargetZero;
+        } else
+        	bnNew.SetCompact(pindexLast->nBits);
 
         int64_t nInterval = nTargetTimespan / nTargetSpacing;
         bnNew *= ((nInterval - 1) * nTargetSpacing + nActualSpacing + nActualSpacing);
@@ -131,8 +137,10 @@ bool CheckProofOfWork(uint256 hash, unsigned int nBits)
     if (hash > bnTarget) {
         if (Params().MineBlocksOnDemand())
             return false;
-        else
+        else {
+			LogPrintf("hash: %s, nBits: %x, bnTarget: %s\n",hash.ToString(), nBits, bnTarget.ToString());
             return error("CheckProofOfWork() : hash doesn't match nBits");
+		}
     }
 
     return true;
