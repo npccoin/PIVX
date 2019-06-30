@@ -1,7 +1,7 @@
-Contributing to PIVX Core
+Contributing to NPCcoin Core
 ============================
 
-The PIVX Core project operates an open contributor model where anyone is
+The NPCcoin Core project operates an open contributor model where anyone is
 welcome to contribute towards development in the form of peer review, testing
 and patches. This document explains the practical process and guidelines for
 contributing.
@@ -24,9 +24,9 @@ facilitates social contribution, easy testing and peer review.
 
 To contribute a patch, the workflow is as follows:
 
-  1. Fork repository
-  2. Create topic branch
-  3. Commit patches
+  - Fork repository
+  - Create topic branch
+  - Commit patches
 
 The project coding conventions in the [developer notes](doc/developer-notes.md)
 must be adhered to.
@@ -40,13 +40,11 @@ Commit messages should be verbose by default consisting of a short subject line
 paragraph(s), unless the title alone is self-explanatory (like "Corrected typo
 in init.cpp") in which case a single title line is sufficient. Commit messages should be
 helpful to people reading your code in the future, so explain the reasoning for
-your decisions. Further explanation [here](https://chris.beams.io/posts/git-commit/).
+your decisions. Further explanation [here](http://chris.beams.io/posts/git-commit/).
 
-If a particular commit references another issue, please add the reference. For
-example: `refs #1234` or `fixes #4321`. Using the `fixes` or `closes` keywords
+If a particular commit references another issue, please add the reference, for
+example `refs #1234`, or `fixes #4321`. Using the `fixes` or `closes` keywords
 will cause the corresponding issue to be closed when the pull request is merged.
-
-Commit messages should never contain any `@` mentions.
 
 Please refer to the [Git manual](https://git-scm.com/doc) for more information
 about Git.
@@ -59,12 +57,12 @@ the pull request affects. Valid areas as:
 
   - *Consensus* for changes to consensus critical code
   - *Docs* for changes to the documentation
-  - *Qt* for changes to pivx-qt
+  - *Qt* for changes to npccoin-qt
   - *Minting* for changes to the minting code
   - *Net* or *P2P* for changes to the peer-to-peer network code
   - *RPC/REST* for changes to the RPC or REST APIs
   - *Scripts and tools* for changes to the scripts and tools
-  - *Tests* for changes to the pivx unit tests or QA tests
+  - *Tests* for changes to the npccoin unit tests or QA tests
   - *Trivial* should **only** be used for PRs that do not change generated
     executable code. Notably, refactors (change of function arguments and code
     reorganization) and changes in behavior should **not** be marked as trivial.
@@ -83,11 +81,7 @@ Examples:
     Qt: Add feed bump button
     Trivial: Fix typo in init.cpp
 
-Note that translations should not be submitted as pull requests, please see
-[Translation Process](https://github.com/pivx-project/pivx/blob/master/doc/translation_process.md)
-for more information on helping with translations.
-
-If a pull request is not to be considered for merging (yet), please
+If a pull request is specifically not to be considered for merging (yet) please
 prefix the title with [WIP] or use [Tasks Lists](https://help.github.com/articles/basic-writing-and-formatting-syntax/#task-lists)
 in the body of the pull request to indicate tasks are pending.
 
@@ -100,8 +94,6 @@ At this stage one should expect comments and review from other contributors. You
 can add more commits to your pull request by committing them locally and pushing
 to your fork until you have satisfied all feedback.
 
-Note: Code review is a burdensome but important part of the development process, and as such, certain types of pull requests are rejected. In general, if the **improvements** do not warrant the **review effort** required, the PR has a high chance of being rejected. It is up to the PR author to convince the reviewers that the changes warrant the review effort, and if reviewers are "Concept NAK'ing" the PR, the author may need to present arguments and/or do research backing their suggested changes.
-
 Squashing Commits
 ---------------------------
 If your pull request is accepted for merging, you may be asked by a maintainer
@@ -110,15 +102,11 @@ before it will be merged. The basic squashing workflow is shown below.
 
     git checkout your_branch_name
     git rebase -i HEAD~n
-    # n is normally the number of commits in the pull request.
-    # Set commits (except the one in the first line) from 'pick' to 'squash', save and quit.
-    # On the next screen, edit/refine commit messages.
-    # Save and quit.
+    # n is normally the number of commits in the pull
+    # set commits from 'pick' to 'squash', save and quit
+    # on the next screen, edit/refine commit messages
+    # save and quit
     git push -f # (force push to GitHub)
-
-Please update the resulting commit message if needed, it should read as a
-coherent message. In most cases this means that you should not just list the
-interim commits.
 
 If you have problems with squashing (or other workflows with `git`), you can
 alternatively enable "Allow edits from maintainers" in the right GitHub
@@ -132,37 +120,11 @@ the respective change set.
 The length of time required for peer review is unpredictable and will vary from
 pull request to pull request.
 
-Rebasing Pull Requests
--------------------------
-It may become necessary for a pull request to be rebased after other pull requests have been
-merged. This is typically due to mutually exclusive changes (conflicts) between your pull
-request and the current `master` branch.
-
-When a rebase is needed, a comment will be added to the pull request indicating this need.
-Rather than simply merge the `master` branch into your pull request (which results in an
-ugly and confusing merge commit), it is better to use git's rebase feature. The basic
-workflow is as follows:
-
-    # replace 'origin' with the remote name for the main project repo in the example
-    git checkout your_branch_name
-    git fetch origin
-    git pull --rebase origin master
-
-This will "rewind" your branch commits, pull any new commits from `master`, then attempt to
-re-apply your commits on top of the new HEAD. If any conflicts are found, the process will
-pause and allow you to resolve any conflicts. Once conflicts have been resolved:
-
-    git rebase --continue
-
-Repeat as necessary until there are no more conflicts and your git tree is in a clean state.
-The final step is to push your rebased branch back up to github:
-
-    git push -f # force pushes the branch to github
 
 Pull Request Philosophy
 -----------------------
 
-Patchsets should always be focused. For example, a pull request could add a
+Patch sets should always be focused. For example, a pull request could add a
 feature, fix a bug, or refactor code; but not a mixture. Please also avoid super
 pull requests which attempt to do too much, are overly large, or overly complex
 as this makes review difficult.
@@ -203,10 +165,10 @@ workload on reviewing.
 "Decision Making" Process
 -------------------------
 
-The following applies to code changes to the PIVX Core project, and is not to be
-confused with overall PIVX Network Protocol consensus changes.
+The following applies to code changes to the NPCcoin Core project, and is not to be
+confused with overall NPCcoin Network Protocol consensus changes.
 
-Whether a pull request is merged into PIVX Core rests with the project merge
+Whether a pull request is merged into NPCcoin Core rests with the project merge
 maintainers and ultimately the project lead.
 
 Maintainers will take into consideration if a patch is in line with the general
@@ -220,7 +182,7 @@ In general, all pull requests must:
   - Be well peer reviewed;
   - follow code style guidelines;
 
-Patches that change PIVX consensus rules are considerably more involved than
+Patches that change NPCcoin consensus rules are considerably more involved than
 normal because they affect the entire ecosystem and so must be preceded by
 extensive discussions and clear detailing. While each case will be different,
 one should be prepared to expend more time and effort than for other kinds of
@@ -263,8 +225,8 @@ higher in terms of discussion and peer review requirements, keeping in mind that
 mistakes could be very costly to the wider community. This includes refactoring
 of consensus critical code.
 
-Where a patchset proposes to change the PIVX consensus, it must have been
-discussed extensively on the forums and Discord, be accompanied by a widely
+Where a patch set proposes to change the NPCcoin consensus, it must have been
+discussed extensively on the forums and Slack, be accompanied by a widely
 discussed Proposal and have a generally widely perceived technical consensus of being
 a worthwhile change based on the judgement of the maintainers.
 
@@ -303,7 +265,7 @@ about:
 Release Policy
 --------------
 
-The project leader is the release manager for each PIVX Core release.
+The project leader is the release manager for each NPCcoin Core release.
 
 Copyright
 ---------

@@ -1,7 +1,8 @@
 // Copyright (c) 2010 Satoshi Nakamoto
 // Copyright (c) 2009-2014 The Bitcoin developers
 // Copyright (c) 2014-2015 The Dash developers
-// Copyright (c) 2015-2019 The PIVX developers
+// Copyright (c) 2014-2015 The PIVX developers
+// Copyright (c) 2015-2019 The NPCcoin developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -267,11 +268,11 @@ UniValue stop(const UniValue& params, bool fHelp)
     if (fHelp || params.size() > 1)
         throw runtime_error(
             "stop\n"
-            "\nStop PIVX server.");
+            "\nStop NPCcoin server.");
     // Event loop will exit after current HTTP requests have been handled, so
     // this reply will get back to the client.
     StartShutdown();
-    return "PIVX server stopping";
+    return "NPCcoin server stopping";
 }
 
 
@@ -355,6 +356,7 @@ static const CRPCCommand vRPCCommands[] =
         {"util", "verifymessage", &verifymessage, true, false, false},
         {"util", "estimatefee", &estimatefee, true, true, false},
         {"util", "estimatepriority", &estimatepriority, true, true, false},
+        {"util", "makekeypair", &makekeypair, true, true, false },
 
         /* Not shown in help */
         {"hidden", "invalidateblock", &invalidateblock, true, true, false},
@@ -364,35 +366,35 @@ static const CRPCCommand vRPCCommands[] =
         { "hidden",             "waitforblock",           &waitforblock,           true,  true,  false  },
         { "hidden",             "waitforblockheight",     &waitforblockheight,     true,  true,  false  },
 
-        /* PIVX features */
-        {"pivx", "listmasternodes", &listmasternodes, true, true, false},
-        {"pivx", "getmasternodecount", &getmasternodecount, true, true, false},
-        {"pivx", "masternodeconnect", &masternodeconnect, true, true, false},
-        {"pivx", "createmasternodebroadcast", &createmasternodebroadcast, true, true, false},
-        {"pivx", "decodemasternodebroadcast", &decodemasternodebroadcast, true, true, false},
-        {"pivx", "relaymasternodebroadcast", &relaymasternodebroadcast, true, true, false},
-        {"pivx", "masternodecurrent", &masternodecurrent, true, true, false},
-        {"pivx", "masternodedebug", &masternodedebug, true, true, false},
-        {"pivx", "startmasternode", &startmasternode, true, true, false},
-        {"pivx", "createmasternodekey", &createmasternodekey, true, true, false},
-        {"pivx", "getmasternodeoutputs", &getmasternodeoutputs, true, true, false},
-        {"pivx", "listmasternodeconf", &listmasternodeconf, true, true, false},
-        {"pivx", "getmasternodestatus", &getmasternodestatus, true, true, false},
-        {"pivx", "getmasternodewinners", &getmasternodewinners, true, true, false},
-        {"pivx", "getmasternodescores", &getmasternodescores, true, true, false},
-        {"pivx", "preparebudget", &preparebudget, true, true, false},
-        {"pivx", "submitbudget", &submitbudget, true, true, false},
-        {"pivx", "mnbudgetvote", &mnbudgetvote, true, true, false},
-        {"pivx", "getbudgetvotes", &getbudgetvotes, true, true, false},
-        {"pivx", "getnextsuperblock", &getnextsuperblock, true, true, false},
-        {"pivx", "getbudgetprojection", &getbudgetprojection, true, true, false},
-        {"pivx", "getbudgetinfo", &getbudgetinfo, true, true, false},
-        {"pivx", "mnbudgetrawvote", &mnbudgetrawvote, true, true, false},
-        {"pivx", "mnfinalbudget", &mnfinalbudget, true, true, false},
-        {"pivx", "checkbudgets", &checkbudgets, true, true, false},
-        {"pivx", "mnsync", &mnsync, true, true, false},
-        {"pivx", "spork", &spork, true, true, false},
-        {"pivx", "getpoolinfo", &getpoolinfo, true, true, false},
+        /* NPCcoin features */
+        {"npccoin", "listmasternodes", &listmasternodes, true, true, false},
+        {"npccoin", "getmasternodecount", &getmasternodecount, true, true, false},
+        {"npccoin", "masternodeconnect", &masternodeconnect, true, true, false},
+        {"npccoin", "createmasternodebroadcast", &createmasternodebroadcast, true, true, false},
+        {"npccoin", "decodemasternodebroadcast", &decodemasternodebroadcast, true, true, false},
+        {"npccoin", "relaymasternodebroadcast", &relaymasternodebroadcast, true, true, false},
+        {"npccoin", "masternodecurrent", &masternodecurrent, true, true, false},
+        {"npccoin", "masternodedebug", &masternodedebug, true, true, false},
+        {"npccoin", "startmasternode", &startmasternode, true, true, false},
+        {"npccoin", "createmasternodekey", &createmasternodekey, true, true, false},
+        {"npccoin", "getmasternodeoutputs", &getmasternodeoutputs, true, true, false},
+        {"npccoin", "listmasternodeconf", &listmasternodeconf, true, true, false},
+        {"npccoin", "getmasternodestatus", &getmasternodestatus, true, true, false},
+        {"npccoin", "getmasternodewinners", &getmasternodewinners, true, true, false},
+        {"npccoin", "getmasternodescores", &getmasternodescores, true, true, false},
+        {"npccoin", "preparebudget", &preparebudget, true, true, false},
+        {"npccoin", "submitbudget", &submitbudget, true, true, false},
+        {"npccoin", "mnbudgetvote", &mnbudgetvote, true, true, false},
+        {"npccoin", "getbudgetvotes", &getbudgetvotes, true, true, false},
+        {"npccoin", "getnextsuperblock", &getnextsuperblock, true, true, false},
+        {"npccoin", "getbudgetprojection", &getbudgetprojection, true, true, false},
+        {"npccoin", "getbudgetinfo", &getbudgetinfo, true, true, false},
+        {"npccoin", "mnbudgetrawvote", &mnbudgetrawvote, true, true, false},
+        {"npccoin", "mnfinalbudget", &mnfinalbudget, true, true, false},
+        {"npccoin", "checkbudgets", &checkbudgets, true, true, false},
+        {"npccoin", "mnsync", &mnsync, true, true, false},
+        {"npccoin", "spork", &spork, true, true, false},
+        {"npccoin", "getpoolinfo", &getpoolinfo, true, true, false},
 
 #ifdef ENABLE_WALLET
         /* Wallet */
@@ -463,11 +465,11 @@ static const CRPCCommand vRPCCommands[] =
         {"zerocoin", "exportzerocoins", &exportzerocoins, false, false, true},
         {"zerocoin", "reconsiderzerocoins", &reconsiderzerocoins, false, false, true},
         {"zerocoin", "getspentzerocoinamount", &getspentzerocoinamount, false, false, false},
-        {"zerocoin", "getzpivseed", &getzpivseed, false, false, true},
-        {"zerocoin", "setzpivseed", &setzpivseed, false, false, true},
+        {"zerocoin", "getznpcseed", &getznpcseed, false, false, true},
+        {"zerocoin", "setznpcseed", &setznpcseed, false, false, true},
         {"zerocoin", "generatemintlist", &generatemintlist, false, false, true},
-        {"zerocoin", "searchdzpiv", &searchdzpiv, false, false, true},
-        {"zerocoin", "dzpivstate", &dzpivstate, false, false, true},
+        {"zerocoin", "searchdznpc", &searchdznpc, false, false, true},
+        {"zerocoin", "dznpcstate", &dznpcstate, false, false, true},
         {"zerocoin", "clearspendcache", &clearspendcache, false, false, true}
 
 #endif // ENABLE_WALLET
@@ -632,7 +634,7 @@ std::vector<std::string> CRPCTable::listCommands() const
 
 std::string HelpExampleCli(string methodname, string args)
 {
-    return "> pivx-cli " + methodname + " " + args + "\n";
+    return "> npccoin-cli " + methodname + " " + args + "\n";
 }
 
 std::string HelpExampleRpc(string methodname, string args)
