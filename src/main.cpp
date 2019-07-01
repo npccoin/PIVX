@@ -4242,7 +4242,7 @@ bool CheckBlockHeader(const CBlockHeader& block, CValidationState& state, bool f
             REJECT_INVALID, "high-hash");
 
     int64_t nZeroCoinStartTime = CChainParams::Zerocoin_StartTime();
-    LogPrintf("ZeroCoinStartTime: %lld\n", nZeroCoinStartTime);
+    //LogPrintf("ZeroCoinStartTime: %lld\n", nZeroCoinStartTime);
 
     // Version 4 header must be used after Params().Zerocoin_StartHeight(). And never before.
     if (block.GetBlockTime() > CChainParams::Zerocoin_StartTime()) {
