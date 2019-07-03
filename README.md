@@ -35,7 +35,6 @@ More information at [npccoin.com](https://npccoin.com) Visit our ANN thread at [
 <tr><td>P2P port</td><td>7168</td></tr>
 <tr><td>Masternode collateral</td><td>10000</td></tr>
 <tr><td>Maturity block</td><td>7</td></tr>
-<tr><td>Masternode collateral</td><td>10000</td></tr>
 </table>
 
 
