@@ -28,7 +28,7 @@ More information at [npccoin.com](https://npccoin.com) Visit our ANN thread at [
 <tr><td>Algo</td><td>Quark</td></tr>
 <tr><td>Block Time</td><td>60 Seconds</td></tr>
 <tr><td>Difficulty Retargeting</td><td>Every Block</td></tr>
-<tr><td>Max Coin Supply (PoW Phase)</td><td>17,010,000 PIV</td></tr>
+<tr><td>Max Coin Supply (PoW Phase)</td><td>17,010,000 NPC</td></tr>
 <tr><td>Max Coin Supply (PoS Phase)</td><td>Infinite</td></tr>
 <tr><td>Premine</td><td>17,000,000 NPC</td></tr>
 <tr><td>RPC port</td><td>7167</td></tr>
